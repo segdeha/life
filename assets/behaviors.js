@@ -13,9 +13,15 @@ function newGame() {
     game.start()
 }
 
+function stopGame() {
+    game && game.stop()
+}
+
 function init() {
     // enable game start button
-    document.querySelector('button').addEventListener('click', newGame)
+    document.querySelector('#start').addEventListener('click', newGame)
+    // enable stopping the game
+    document.querySelector('#stop').addEventListener('click', stopGame)
 }
 
 document.addEventListener('DOMContentLoaded', init)

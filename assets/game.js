@@ -23,10 +23,12 @@ class Game {
     // start the game loop
     start() {
         this.timer = setInterval(this.board.update, this.interval)
+        console.log('game started')
     }
     // stop the game loop
     stop () {
         clearInterval(this.timer)
+        console.log('game stopped')
     }
     // clear the board
     clear() {

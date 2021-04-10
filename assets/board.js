@@ -29,15 +29,17 @@ class Board {
                 this.array[r][c] = cell
             }
         }
+        console.log('board set up')
         return this.board
     }
     // scan the board and tell each cell to update
-    scan() {
+    update() {
         for (let r = 0; r < this.rows; r += 1) {
             for (let c = 0; c < this.cols; c += 1) {
                 this.array[r][c].update()
             }
         }
+        console.log('board updated')
     }
 }
 
