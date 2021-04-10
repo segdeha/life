@@ -25,7 +25,7 @@ class Game {
     }
     // stop the game loop
     stop () {
-        cancelInterval(this.timer)
+        clearInterval(this.timer)
     }
     // clear the board
     clear() {
