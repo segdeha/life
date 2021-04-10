@@ -11,10 +11,27 @@ function newGame() {
     // pass in the CSS selector to the DOM node for the game board
     game = new Game(/*'#board', 8, 8, 1000*/)
     game.start()
+    toggleGameControls('during')
 }
 
 function stopGame() {
     game && game.stop()
+    toggleGameControls('before')
+}
+
+function toggleGameControls(state) {
+    let activeControls
+    let inactiveControls
+    if ('during' === state) {
+        activeControls = document.querySelectorAll('.active-during-game')
+        inactiveControls = document.querySelectorAll('.active-before-game')
+    }
+    else {
+        activeControls = document.querySelectorAll('.active-before-game')
+        inactiveControls = document.querySelectorAll('.active-during-game')
+    }
+    activeControls.forEach(control => control.disabled = false)
+    inactiveControls.forEach(control => control.disabled = true)
 }
 
 function init() {

@@ -4,7 +4,7 @@ body {
 }
 
 #board {
-    padding: 0 2rem;
+    padding: 0 1rem;
 }
 
 .row {
@@ -21,3 +21,8 @@ body {
     .cell.alive {
         background: white;
     }
+
+footer {
+    border-top: solid 1px black;
+    font-size: 85%;
+}
