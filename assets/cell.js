@@ -68,12 +68,6 @@ class Cell {
         const count = this.numberOfLivingNeighbors(grid)
         return count < 2 || count > 3
     }
-    /* this rule isn't needed because the other 2 rules imply this rule
-    meetsSurvivalRule() {
-        // A live cell with two or three neighbors remains alive.
-        // NEVER GETS CALLED, COVERED BY THE OTHER 2 RULES
-    }
-    */
     getSelector() {
         return `.cell.row-${this.position[0]}.col-${this.position[1]}`
     }

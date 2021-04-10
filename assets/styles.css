@@ -1,6 +1,7 @@
 body {
     background: #e7e7e7;
     font: 16px/1.5 Helvetica, Sans-Serif;
+    padding: 0 1rem;
 }
 
 #board {
