@@ -1,4 +1,4 @@
-import { Game } fromn './game.js'
+import { Game } from './game.js'
 
 // there's gotta be a better way, but we're using modules, so... ¯\_(ツ)_/¯
 let game = null;
