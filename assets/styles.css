@@ -4,8 +4,11 @@ body {
 }
 
 #board {
-    border: solid 1px black;
-    padding: 0.25rem;
+    padding: 0 2rem;
+}
+
+.row {
+    line-height: 0;
 }
 
 .cell {
