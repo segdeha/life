@@ -26,7 +26,6 @@ class Board {
             this.grid[r] = []
             const html = `<div class="row row-${r}"></div>`
             this.node.insertAdjacentHTML('beforeend', html)
-            const row = document.querySelector(`.row.row-${r}`)
             for (let c = 0; c < this.cols; c += 1) {
                 const cell = new Cell(r, c, this.isRandomlyAlive())
                 this.grid[r][c] = cell
