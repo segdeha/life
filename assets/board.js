@@ -2,7 +2,7 @@ import { Cell } from './cell.js'
 
 // responsible for the game board
 class Board {
-    constructor(selector = '#board', rows = 8, cols = 8, percentAlive = 50) {
+    constructor(selector = '#board', rows = 8, cols = 8, percentAlive = 33) {
         this.board = document.querySelector(selector)
         if (!this.board) {
             throw 'No game board found'
@@ -27,13 +27,21 @@ class Board {
             const html = `<div class="row row-${r}"></div>`
             this.board.insertAdjacentHTML('beforeend', html)
             const row = document.querySelector(`.row.row-${r}`)
+
+console.log('board:setup:row', row)
+
             for (let c = 0; c < this.cols; c += 1) {
-                const cell = new Cell([c, r])
+                const cell = new Cell([r, c], this.isRandomlyAlive())
+
+console.log('board:setup:cell', cell)
+
                 row.appendChild(cell.node)
                 this.array[r][c] = cell
             }
         }
-        console.log('board set up')
+
+console.log('✅ board set up')
+
         return this.board
     }
     // scan the board and tell each cell to update
@@ -43,7 +51,9 @@ class Board {
                 this.array[r][c].update()
             }
         }
-        console.log('board updated')
+
+console.log('✅ board updated')
+
     }
 }
 
