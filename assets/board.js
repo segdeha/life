@@ -2,15 +2,16 @@ import { Cell } from './cell.js'
 
 // responsible for the game board
 class Board {
-    constructor(selector, rows = 8, cols = 8, percentAlive = 50) {
-        if (!selector) {
-            throw 'No CSS selector for the game board'
-        }
+    constructor(selector = '#board', rows = 8, cols = 8, percentAlive = 50) {
         this.board = document.querySelector(selector)
+        if (!this.board) {
+            throw 'No game board found'
+        }
         this.rows = rows
         this.cols = cols
         this.percentAlive = percentAlive
         this.array = []
+        this.setup()
     }
     // return true or false at some random interval
     isRandomlyAlive() {
