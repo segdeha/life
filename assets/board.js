@@ -10,7 +10,7 @@ class Board {
         this.rows = rows
         this.cols = cols
         this.percentAlive = percentAlive
-        this.array = []
+        this.grid = []
         this.setup()
     }
     // return true or false at some random interval
@@ -23,7 +23,7 @@ class Board {
     setup() {
         // create a Cell for each column x row
         for (let r = 0; r < this.rows; r += 1) {
-            this.array[r] = []
+            this.grid[r] = []
             const html = `<div class="row row-${r}"></div>`
             this.board.insertAdjacentHTML('beforeend', html)
             const row = document.querySelector(`.row.row-${r}`)
@@ -36,7 +36,7 @@ console.log('board:setup:row', row)
 console.log('board:setup:cell', cell)
 
                 row.appendChild(cell.node)
-                this.array[r][c] = cell
+                this.grid[r][c] = cell
             }
         }
 
@@ -48,7 +48,7 @@ console.log('✅ board set up')
     update() {
         for (let r = 0; r < this.rows; r += 1) {
             for (let c = 0; c < this.cols; c += 1) {
-                this.array[r][c].update()
+                this.grid[r][c].update(this.grid)
             }
         }
 

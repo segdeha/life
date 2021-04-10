@@ -58,17 +58,17 @@ console.log('cell:create:selector', selector)
     }
     /**
      * Update the state of this cell
-     * @param board Array Array of arrays representing the state of the board
+     * @param grid Array Array of arrays representing the state of the board
      */
-    update(board) {
+    update(grid) {
         if (this.alive) {
-            if (this.satisfiesDeathRule(board)) {
+            if (this.satisfiesDeathRule(grid)) {
                 this.alive = false
             }
         }
         // this.alive === false
         else {
-            if (this.satisfiesBirthRule(board)) {
+            if (this.satisfiesBirthRule(grid)) {
                 this.alive = true
             }
         }
