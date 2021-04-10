@@ -3,8 +3,8 @@ import { Cell } from './cell.js'
 // responsible for the game board
 class Board {
     constructor(selector = '#board', rows = 8, cols = 8, percentAlive = 33) {
-        this.board = document.querySelector(selector)
-        if (!this.board) {
+        this.node = document.querySelector(selector)
+        if (!this.node) {
             throw 'No game board found'
         }
         this.rows = rows
@@ -25,24 +25,13 @@ class Board {
         for (let r = 0; r < this.rows; r += 1) {
             this.grid[r] = []
             const html = `<div class="row row-${r}"></div>`
-            this.board.insertAdjacentHTML('beforeend', html)
+            this.node.insertAdjacentHTML('beforeend', html)
             const row = document.querySelector(`.row.row-${r}`)
-
-console.log('board:setup:row', row)
-
             for (let c = 0; c < this.cols; c += 1) {
-                const cell = new Cell([r, c], this.isRandomlyAlive())
-
-console.log('board:setup:cell', cell)
-
-                row.appendChild(cell.node)
+                const cell = new Cell(r, c, this.isRandomlyAlive())
                 this.grid[r][c] = cell
             }
         }
-
-console.log('✅ board set up')
-
-        return this.board
     }
     // scan the board and tell each cell to update
     update() {
@@ -51,9 +40,6 @@ console.log('✅ board set up')
                 this.grid[r][c].update(this.grid)
             }
         }
-
-console.log('✅ board updated')
-
     }
 }
 

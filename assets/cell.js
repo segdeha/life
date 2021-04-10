@@ -4,8 +4,8 @@ class Cell {
      * @param position Array Tuple of Numbers representing the column and row of this cell on the board
      * @param alive Boolean Optional initial state of this cell (true === alive, false === dead)
      */
-    constructor(position, alive = false) {
-        this.position =position
+    constructor(row, col, alive = false) {
+        this.position = [row, col]
         this.alive = alive
         this.create()
     }
@@ -28,32 +28,19 @@ class Cell {
     }
     */
     getSelector() {
-        return `.cell.col-${this.position[1]}`
+        return `.cell.row-${this.position[0]}.col-${this.position[1]}`
     }
     getClassName() {
-        return `cell col-${this.position[1]} ${this.alive ? 'alive' : 'dead'}`
+        return `cell row-${this.position[0]} col-${this.position[1]} ${this.alive ? 'alive' : 'dead'}`
     }
     /**
-     * Create the DOM node for this cell
-     * @param board Node DOM node of the board
+     * Create the DOM node for this cell, insert it into the proper row
      */
-    create(board) {
-
-console.log('cell:create:this.position', this.position)
-
+    create() {
         const row = document.querySelector(`.row.row-${this.position[0]}`)
-
-console.log('cell:create:row', row)
-
         const html = `<div class="${this.getClassName()}"></div>`
-
-console.log('cell:create:html', html)
-
         row.insertAdjacentHTML('beforeend', html)
         const selector = this.getSelector()
-
-console.log('cell:create:selector', selector)
-
         this.node = document.querySelector(selector)
     }
     /**
