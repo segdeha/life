@@ -28,18 +28,19 @@ class Cell {
     }
     */
     getSelector() {
-        return `cell.row-${this.position[1]}.col-${this.position[0]}`
+        return `cell.col-${this.position[1]}`
     }
     getClassName() {
-        return `cell row-${this.position[1]} col-${this.position[0]} ${this.alive ? 'alive' : 'dead'}`
+        return `cell col-${this.position[1]} ${this.alive ? 'alive' : 'dead'}`
     }
     /**
      * Create the DOM node for this cell
      * @param board Node DOM node of the board
      */
     create(board) {
+        const row = document.querySelector(`.row.row-${this.position[0]}`)
         const html = `<div class="${this.getClassName()}"></div>`
-        board.insertAdjacentHTML('beforeend', html)
+        row.insertAdjacentHTML('beforeend', html)
         const selector = this.getSelector()
         this.node = document.querySelector(selector)
         return this.node
