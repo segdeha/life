@@ -7,6 +7,7 @@ function newGame() {
     if (game) {
         game.stop()
         game.clear()
+        game = null // allow `game` to be garbage collected
     }
     const options = readGameOptions()
     game = new Game('#board', options)
