@@ -1,5 +1,5 @@
 // responsible for the behavior of a single cell
-class Cell() {
+class Cell {
     /**
      * @param position Array Tuple of Numbers representing the column and row of this cell on the board
      * @param alive Boolean Optional initial state of this cell (true === alive, false === dead)

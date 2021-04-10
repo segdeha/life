@@ -1,7 +1,7 @@
 import { Board } from './board.js'
 
 // responsible for the game loop
-class Game() {
+class Game {
     /**
      * @param selector String CSS selector for the DOM node of the game board
      * @param cols Number Number of columns on the board

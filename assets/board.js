@@ -1,7 +1,7 @@
 import { Cell } from './cell.js'
 
 // responsible for the game board
-class Board() {
+class Board {
     constructor(selector, cols = 8, rows = 8, percentAlive = 50) {
         if (!selector) {
             throw 'No CSS selector for the game board'
