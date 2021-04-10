@@ -9,17 +9,36 @@ class Cell {
         this.alive = alive
         this.create()
     }
-    satisfiesBirthRule() {
+    // for the 4 neighboring cells, how many are alive?
+    numberOfLivingNeighbors(grid) {
+        const [ row, col ] = this.position
+
+        const north = grid[row - 1] && grid[row - 1][col]
+        const south = grid[row + 1] && grid[row + 1][col]
+        const east = grid[row][col + 1]
+        const west = grid[row][col - 1]
+
+        let count = 0
+
+        count += north && north.alive ? 1 : 0
+        count += south && south.alive ? 1 : 0
+        count += east && east.alive ? 1 : 0
+        count += west && west.alive ? 1 : 0
+
+        return count
+    }
+    satisfiesBirthRule(grid) {
+        // We only get here if this.alive is false
         // An empty, or “dead,” cell with precisely three “live” neighbors
         // (full cells) becomes live.
-        // FIXME for now, return 50/50
-        return Math.random() >= 0.5
+        return 3 === this.numberOfLivingNeighbors(grid)
     }
-    satisfiesDeathRule() {
+    satisfiesDeathRule(grid) {
+        // We only get here if this.alive is true
         // A live cell with zero or one neighbors dies of isolation;
         // a live cell with four or more neighbors dies of overcrowding.
-        // FIXME for now, return 50/50
-        return Math.random() >= 0.5
+        const count = this.numberOfLivingNeighbors(grid)
+        return count < 2 || count > 3
     }
     /* this rule isn't needed because the other 2 rules imply this rule
     meetsSurvivalRule() {
