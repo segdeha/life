@@ -40,3 +40,5 @@ class Board() {
         }
     }
 }
+
+export { Board }
