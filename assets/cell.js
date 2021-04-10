@@ -9,18 +9,24 @@ class Cell {
         this.alive = alive
         this.create()
     }
-    meetsBirthRule() {
+    satisfiesBirthRule() {
         // An empty, or “dead,” cell with precisely three “live” neighbors
         // (full cells) becomes live.
+        // FIXME for now, return 50/50
+        return Math.random() >= 0.5
     }
-    meetsDeathRule() {
+    satisfiesDeathRule() {
         // A live cell with zero or one neighbors dies of isolation;
         // a live cell with four or more neighbors dies of overcrowding.
+        // FIXME for now, return 50/50
+        return Math.random() >= 0.5
     }
+    /* this rule isn't needed because the other 2 rules imply this rule
     meetsSurvivalRule() {
         // A live cell with two or three neighbors remains alive.
         // NEVER GETS CALLED, COVERED BY THE OTHER 2 RULES
     }
+    */
     getSelector() {
         return `cell.row-${this.position[1]}.col-${this.position[0]}`
     }
@@ -44,13 +50,13 @@ class Cell {
      */
     update(board) {
         if (this.alive) {
-            if (this.meetsDeathRule(board)) {
+            if (this.satisfiesDeathRule(board)) {
                 this.alive = false
             }
         }
         // this.alive === false
         else {
-            if (this.meetsBirthRule(board)) {
+            if (this.satisfiesBirthRule(board)) {
                 this.alive = true
             }
         }
