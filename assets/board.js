@@ -2,13 +2,13 @@ import { Cell } from './cell.js'
 
 // responsible for the game board
 class Board {
-    constructor(selector, cols = 8, rows = 8, percentAlive = 50) {
+    constructor(selector, rows = 8, cols = 8, percentAlive = 50) {
         if (!selector) {
             throw 'No CSS selector for the game board'
         }
         this.board = document.querySelector(selector)
-        this.cols = cols
         this.rows = rows
+        this.cols = cols
         this.percentAlive = percentAlive
         this.array = []
     }
@@ -21,21 +21,21 @@ class Board {
     // create the DOM nodes for the game board
     setup() {
         // create a Cell for each column x row
-        for (let c = 0; c < this.cols; c += 1) {
-            this.array[c] = []
-            for (let r = 0; r < this.rows; r += 1) {
+        for (let r = 0; r < this.rows; r += 1) {
+            this.array[r] = []
+            for (let c = 0; c < this.cols; c += 1) {
                 const cell = new Cell([c, r])
                 this.board.appendChild(cell.node)
-                this.array[c][r] = cell
+                this.array[r][c] = cell
             }
         }
         return this.board
     }
     // scan the board and tell each cell to update
     scan() {
-        for (let c = 0; c < this.cols; c += 1) {
-            for (let r = 0; r < this.rows; r += 1) {
-                this.array[c][r].update()
+        for (let r = 0; r < this.rows; r += 1) {
+            for (let c = 0; c < this.cols; c += 1) {
+                this.array[r][c].update()
             }
         }
     }

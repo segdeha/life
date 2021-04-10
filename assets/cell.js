@@ -22,10 +22,10 @@ class Cell {
         // NEVER GETS CALLED, COVERED BY THE OTHER 2 RULES
     }
     getSelector() {
-        return `cell.col-${this.position[0]}.row-${this.position[1]}`
+        return `cell.row-${this.position[1]}.col-${this.position[0]}`
     }
     getClassName() {
-        return `cell col-${this.position[0]} row-${this.position[1]} ${this.alive ? 'alive' : 'dead'}`
+        return `cell row-${this.position[1]} col-${this.position[0]} ${this.alive ? 'alive' : 'dead'}`
     }
     /**
      * Create the DOM node for this cell

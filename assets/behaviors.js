@@ -9,7 +9,7 @@ function newGame() {
         game.clear()
     }
     // pass in the CSS selector to the DOM node for the game board
-    game = new Game('#board')
+    game = new Game(/*'#board', 8, 8, 1000*/)
     game.start()
 }
 

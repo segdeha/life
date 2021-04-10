@@ -4,20 +4,21 @@ import { Board } from './board.js'
 class Game {
     /**
      * @param selector String CSS selector for the DOM node of the game board
-     * @param cols Number Number of columns on the board
      * @param rows Number Number of rows on the board
+     * @param cols Number Number of columns on the board
+     * @param interval Number Interval between board refreshes, in milliseconds
      */
-    constructor(selector = '#board', cols = 8, rows = 8, interval = 1000) {
+    constructor(selector = '#board', rows = 8, cols = 8, interval = 1000) {
         this.selector = selector
-        this.cols = cols
         this.rows = rows
+        this.cols = cols
         this.interval = interval
         this.timer = null
         this.setup()
     }
     // create the DOM nodes that represent the game board
     setup() {
-        this.board = new Board(this.selector, this.cols, this.rows)
+        this.board = new Board(this.selector, this.rows, this.cols)
     }
     // start the game loop
     start() {
