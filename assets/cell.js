@@ -10,14 +10,36 @@ class Cell {
         this.alive = alive
         this.create()
     }
-    // for the 4 neighboring cells, how many are alive?
+    // for the 8 neighboring cells, how many are alive?
+    /*
+
+    |----|---|----|
+    | NW | N | NE |
+    |----|---|----|
+    | W  | C |  E |
+    |----|---|----|
+    | SW | S | SE |
+    |----|---|----|
+
+    */
     numberOfLivingNeighbors(grid) {
         const [ row, col ] = this.position
 
-        const north = grid[row - 1] && grid[row - 1][col]
-        const south = grid[row + 1] && grid[row + 1][col]
-        const east = grid[row][col + 1]
-        const west = grid[row][col - 1]
+        const row_minus = row - 1
+        const col_minus = col - 1
+
+        const row_plus = row + 1
+        const col_plus = col + 1
+
+        const north = grid[row_minus] && grid[row_minus][col]
+        const south = grid[row_plus] && grid[row_plus][col]
+        const east = grid[row][col_plus]
+        const west = grid[row][col_minus]
+
+        const nw = grid[row_minus] && grid[row_minus][col_minus]
+        const ne = grid[row_minus] && grid[row_minus][col_plus]
+        const sw = grid[row_plus] && grid[row_plus][col_minus]
+        const se = grid[row_plus] && grid[row_plus][col_plus]
 
         let count = 0
 
@@ -25,6 +47,11 @@ class Cell {
         count += south && south.alive ? 1 : 0
         count += east && east.alive ? 1 : 0
         count += west && west.alive ? 1 : 0
+
+        count += nw && nw.alive ? 1 : 0
+        count += ne && ne.alive ? 1 : 0
+        count += sw && sw.alive ? 1 : 0
+        count += se && se.alive ? 1 : 0
 
         return count
     }
