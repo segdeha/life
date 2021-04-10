@@ -24,9 +24,12 @@ class Board {
         // create a Cell for each column x row
         for (let r = 0; r < this.rows; r += 1) {
             this.array[r] = []
+            const html = `<div class="row row-${r}"></div>`
+            this.board.insertAdjacentHTML('beforeend', html)
+            const row = document.querySelector(`.row.row-${r}`)
             for (let c = 0; c < this.cols; c += 1) {
                 const cell = new Cell([c, r])
-                this.board.appendChild(cell.node)
+                row.appendChild(cell.node)
                 this.array[r][c] = cell
             }
         }
