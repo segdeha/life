@@ -1,7 +1,8 @@
 // responsible for the behavior of a single cell
 class Cell {
     /**
-     * @param position Array Tuple of Numbers representing the column and row of this cell on the board
+     * @param row Number Number representing the row of this cell on the board
+     * @param col Number Number representing the column of this cell on the board
      * @param alive Boolean Optional initial state of this cell (true === alive, false === dead)
      */
     constructor(row, col, alive = false) {
