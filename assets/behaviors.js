@@ -1,12 +1,15 @@
 import { Game } fromn './game.js'
 
+// there's gotta be a better way, but we're using modules, so... ¯\_(ツ)_/¯
 let game = null;
 
 function newGame() {
     if (game) {
         game.stop()
+        game.clear()
     }
-    game = new Game()
+    // pass in the CSS selector to the DOM node for the game board
+    game = new Game('#board')
     game.start()
 }
 
