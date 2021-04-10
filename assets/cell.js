@@ -43,7 +43,6 @@ class Cell {
         row.insertAdjacentHTML('beforeend', html)
         const selector = this.getSelector()
         this.node = document.querySelector(selector)
-        return this.node
     }
     /**
      * Update the state of this cell
