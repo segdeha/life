@@ -37,9 +37,16 @@ class Board {
     }
     // scan the board and tell each cell to update
     update() {
+        // first, update the state of each cell
         for (let r = 0; r < this.rows; r += 1) {
             for (let c = 0; c < this.cols; c += 1) {
                 this.grid[r][c].update(this.grid)
+            }
+        }
+        // second, re-render the cells based on their new states
+        for (let r = 0; r < this.rows; r += 1) {
+            for (let c = 0; c < this.cols; c += 1) {
+                this.grid[r][c].render()
             }
         }
     }

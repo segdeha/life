@@ -100,6 +100,11 @@ class Cell {
                 this.alive = true
             }
         }
+    }
+    /**
+     * Render the correct className value for the cell
+     */
+    render() {
         this.node.className = this.getClassName()
     }
 }
