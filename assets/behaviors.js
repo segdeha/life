@@ -8,8 +8,8 @@ function newGame() {
         game.stop()
         game.clear()
     }
-    // pass in the CSS selector to the DOM node for the game board
-    game = new Game(/*'#board', 8, 8, 1000*/)
+    const options = readGameOptions()
+    game = new Game('#board', options)
     game.start()
     toggleGameControls('during')
 }
@@ -17,6 +17,20 @@ function newGame() {
 function stopGame() {
     game && game.stop()
     toggleGameControls('before')
+}
+
+function getValueFromSelect(select) {
+    return select.options[select.selectedIndex].value
+}
+
+function readGameOptions() {
+    const names = ['grid-size', 'starting-density', 'refresh-interval']
+    const values = {}
+    names.forEach(name => {
+        const select = document.querySelector(`[name="${name}"]`)
+        values[name] = getValueFromSelect(select)
+    })
+    return values
 }
 
 function toggleGameControls(state) {

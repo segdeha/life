@@ -2,21 +2,21 @@ import { Cell } from './cell.js'
 
 // responsible for the game board
 class Board {
-    constructor(selector = '#board', rows = 8, cols = 8, percentAlive = 33) {
+    constructor(selector = '#board', rows = 8, cols = 8, density = 33) {
         this.node = document.querySelector(selector)
         if (!this.node) {
             throw 'No game board found'
         }
         this.rows = rows
         this.cols = cols
-        this.percentAlive = percentAlive
+        this.density = density
         this.grid = []
         this.setup()
     }
     // return true or false at some random interval
     isRandomlyAlive() {
-        // return true or false weighted to the percentAlive number
-        const weight = this.percentAlive / 100
+        // return true or false weighted to the density number
+        const weight = this.density / 100
         return Math.random() >= weight
     }
     // create the DOM nodes for the game board
