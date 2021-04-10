@@ -21,7 +21,7 @@ class Board {
     }
     // create the DOM nodes for the game board
     setup() {
-        // create a Cell for each column x row
+        // create a Cell for each row x column
         for (let r = 0; r < this.rows; r += 1) {
             this.grid[r] = []
             const html = `<div class="row row-${r}"></div>`
