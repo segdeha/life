@@ -30,6 +30,7 @@
                     <option value="16">16x16</option>
                     <option value="32" selected>32x32</option>
                     <option value="64">64x64</option>
+                    <option value="128">128x128</option>
                 </select>
                 <select class="active-before-game" name="starting-density">
                     <option value="25">25%</option>
@@ -48,7 +49,8 @@
                     <option value="1000">1000ms (1fps)</option>
                 </select>
                 <button class="active-before-game" id="start">Start Game</button>
-                <button class="active-during-game" id="stop" disabled>Stop Game</button>
+                <button class="active-during-game" id="stop" disabled>Stop Game</button><br>
+                Generations: <span id="generations">0</span>
             </p>
             <div id="board"></div>
         </main>

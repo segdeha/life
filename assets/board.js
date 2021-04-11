@@ -10,6 +10,8 @@ class Board {
         this.rows = rows
         this.cols = cols
         this.density = density
+        this.generations = 0
+        this.generationsNode = document.getElementById('generations')
         this.grid = []
         this.setup()
     }
@@ -34,6 +36,8 @@ class Board {
                 this.grid[r][c] = cell
             }
         }
+        this.generations += 0
+        this.updateGeneration()
     }
     // scan the board and tell each cell to update
     // we do this in three passes so we don’t interfere
@@ -58,6 +62,12 @@ class Board {
                 this.grid[r][c].render()
             }
         }
+        this.generations += 1
+        this.updateGeneration()
+    }
+    // display the current generation
+    updateGeneration() {
+        this.generationsNode.innerHTML = this.generations
     }
 }
 
