@@ -47,6 +47,8 @@ class Game {
     updateGeneration() {
         this.generationsNode.innerHTML = this.generations
     }
+    // convert an array of objects, each with an `alive` property
+    // set to either true or false to a string of 1s and 0s
     reduce(array) {
         const reducer = (accumulator, currentValue) => {
             return [accumulator, currentValue.alive ? 1 : 0].join('')
@@ -55,9 +57,10 @@ class Game {
     }
     // save history
     save() {
-        // convert the array into a string of 1s and 0s
-        const flat = this.board.grid.flat()
-        this.history[this.generations % 2] = this.reduce(flat)
+        // reduce the current grid to a string of 1s and 0s and
+        // save in either the 0 or 1 index of the history array
+        // based on whether the current generateion is odd or even
+        this.history[this.generations % 2] = this.reduce(this.board.grid.flat())
     }
     isGameDone() {
         // short circuit if we only have 1 history entry
