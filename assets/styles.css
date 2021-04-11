@@ -14,9 +14,8 @@ body {
 
 .cell {
     background: #ccc;
-    border: solid 1px #666;
     display: inline-block;
-    margin: 0.25rem;
+    margin: 1px;
     padding: 0.25rem;
 }
     .cell.alive {
