@@ -5,7 +5,10 @@ body {
 }
 
 #board {
-    padding: 0 1rem 1rem;
+    background: #999;
+    border: solid 1px #999;
+    display: inline-block;
+    margin: 0 0 1rem;
 }
 
 .row {
@@ -13,7 +16,7 @@ body {
 }
 
 .cell {
-    background: #ccc;
+    background: #666;
     display: inline-block;
     margin: 1px;
     padding: 0.25rem;
