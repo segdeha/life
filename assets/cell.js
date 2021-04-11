@@ -8,7 +8,7 @@ class Cell {
     constructor(row, col, alive = false) {
         this.position = [row, col]
         this.alive = alive
-        this.willLive = undefined
+        this.willLive = false
         this.create()
     }
     // for the 8 neighboring cells, how many are alive?
@@ -60,7 +60,8 @@ class Cell {
         // We only get here if this.alive is false
         // An empty, or “dead,” cell with precisely three “live” neighbors
         // (full cells) becomes live.
-        return 3 === this.numberOfLivingNeighbors(grid)
+        const count = this.numberOfLivingNeighbors(grid)
+        return 3 === count
     }
     satisfiesDeathRule(grid) {
         // We only get here if this.alive is true
@@ -91,15 +92,11 @@ class Cell {
      */
     update(grid) {
         if (this.alive) {
-            if (this.satisfiesDeathRule(grid)) {
-                this.willLive = false
-            }
+            this.willLive = !this.satisfiesDeathRule(grid)
         }
         // this.alive === false
         else {
-            if (this.satisfiesBirthRule(grid)) {
-                this.willLive = true
-            }
+            this.willLive = this.satisfiesBirthRule(grid)
         }
     }
     /**
