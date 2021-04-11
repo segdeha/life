@@ -36,6 +36,9 @@ class Board {
         }
     }
     // scan the board and tell each cell to update
+    // we do this in three passes so we don’t interfere
+    // with the values of neighbors while we determine
+    // which cells will live and die in the next round
     update() {
         // first, update the state of each cell
         for (let r = 0; r < this.rows; r += 1) {
@@ -43,7 +46,13 @@ class Board {
                 this.grid[r][c].update(this.grid)
             }
         }
-        // second, re-render the cells based on their new states
+        // second commit the new values
+        for (let r = 0; r < this.rows; r += 1) {
+            for (let c = 0; c < this.cols; c += 1) {
+                this.grid[r][c].commit()
+            }
+        }
+        // lastly, re-render the cells based on their new states
         for (let r = 0; r < this.rows; r += 1) {
             for (let c = 0; c < this.cols; c += 1) {
                 this.grid[r][c].render()

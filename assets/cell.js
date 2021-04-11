@@ -8,6 +8,7 @@ class Cell {
     constructor(row, col, alive = false) {
         this.position = [row, col]
         this.alive = alive
+        this.willLive = undefined
         this.create()
     }
     // for the 8 neighboring cells, how many are alive?
@@ -85,21 +86,27 @@ class Cell {
         this.node = document.querySelector(selector)
     }
     /**
-     * Update the state of this cell
+     * Update the future state of this cell
      * @param grid Array Array of arrays representing the state of the board
      */
     update(grid) {
         if (this.alive) {
             if (this.satisfiesDeathRule(grid)) {
-                this.alive = false
+                this.willLive = false
             }
         }
         // this.alive === false
         else {
             if (this.satisfiesBirthRule(grid)) {
-                this.alive = true
+                this.willLive = true
             }
         }
+    }
+    /**
+     * Commit the new alive value
+     */
+    commit() {
+        this.alive = this.willLive
     }
     /**
      * Render the correct className value for the cell
