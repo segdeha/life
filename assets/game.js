@@ -60,7 +60,7 @@ class Game {
     save() {
         // reduce the current grid to a string of 1s and 0s and
         // save in either the 0 or 1 index of the history array
-        // based on whether the current generateion is odd or even
+        // based on whether the current generation is odd or even
         this.history[this.generations % 2] = this.reduce(this.board.grid.flat())
     }
     isGameDone() {
