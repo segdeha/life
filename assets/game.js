@@ -70,6 +70,9 @@ class Game {
         }
         // reduce the current grid to a string of 1s and 0s
         const reduced = this.reduce(this.board.grid.flat())
+
+console.log(reduced)
+
         // if the current grid is the same as either history, the game is done
         return reduced === this.history[0] || reduced === this.history[1]
     }

@@ -1,4 +1,5 @@
 import { Game } from './game.js'
+import { uncompress } from './lzw.js'
 
 // there's gotta be a better way, but we're using modules, so... ¯\_(ツ)_/¯
 let game = null;
@@ -15,6 +16,25 @@ function parseQuery() {
         }
     }
     return values
+}
+
+/**
+ * A string representing a grid should be all 1s and 0s
+ * If it is not, it might have been compressed
+ * @param grid String String of either 1s & 0s or characters representing an LZW-compressed string of 1s & 0s
+ */
+function uncompressGrid(grid) {
+    const rgx = /^[01]+$/
+    // short circuit for an empty string
+    if (!grid) {
+        return grid
+    }
+    // if grid is all 1s & 0s, return it without modification
+    if (rgx.test(grid)) {
+        return grid
+    }
+    // at this point, the string has characters that are not just 1s & 0s, so try uncompressing
+    return uncompress(grid)
 }
 
 function newGame() {
@@ -46,7 +66,7 @@ function readGameOptions() {
         values[name] = getValueFromSelect(select)
     })
     const queryValues = parseQuery()
-    values.grid = queryValues.grid
+    values.grid = uncompressGrid(queryValues.grid)
     return values
 }
 

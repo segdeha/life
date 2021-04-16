@@ -57,7 +57,7 @@ const compress = (str, asArray) => {
         ASCII += String.fromCharCode(dict[w])
     }
     return asArray ? result : ASCII
-};
+}
 
 const uncompress = str => {
     // Build the dictionary.
