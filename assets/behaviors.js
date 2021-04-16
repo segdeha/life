@@ -3,6 +3,20 @@ import { Game } from './game.js'
 // there's gotta be a better way, but we're using modules, so... ¯\_(ツ)_/¯
 let game = null;
 
+// based on https://stackoverflow.com/a/13419367/11577
+function parseQuery() {
+    const q = window.location.search
+    const query = {}
+    if (q) {
+        const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
+        for (let i = 0; i < pairs.length; i += 1) {
+            const pair = pairs[i].split('=')
+            query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
+        }
+    }
+    return query
+}
+
 function newGame() {
     if (game) {
         game.stop()
@@ -31,6 +45,8 @@ function readGameOptions() {
         const select = document.querySelector(`[name="${name}"]`)
         values[name] = getValueFromSelect(select)
     })
+    const queryValues = parseQuery()
+    values.grid = queryValues.grid
     return values
 }
 
