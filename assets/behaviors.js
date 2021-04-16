@@ -6,15 +6,15 @@ let game = null;
 // based on https://stackoverflow.com/a/13419367/11577
 function parseQuery() {
     const q = window.location.search
-    const query = {}
+    const values = {}
     if (q) {
-        const pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&')
+        const pairs = (q[0] === '?' ? q.substr(1) : q).split('&')
         for (let i = 0; i < pairs.length; i += 1) {
             const pair = pairs[i].split('=')
-            query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
+            values[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '')
         }
     }
-    return query
+    return values
 }
 
 function newGame() {

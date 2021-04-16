@@ -12,6 +12,7 @@ class Game {
         this.cols = options['grid-size']
         this.density = options['starting-density']
         this.interval = options['refresh-interval']
+        this.startGrid = options['grid'] // optional, defaults to `undefined`
         this.generations = 0
         this.generationsNode = document.getElementById('generations')
         this.history = [[], []]
@@ -20,7 +21,7 @@ class Game {
     }
     // create the DOM nodes that represent the game board
     setup() {
-        this.board = new Board(this.selector, this.rows, this.cols, this.density)
+        this.board = new Board(this.selector, this.rows, this.cols, this.density, this.startGrid)
         this.generations += 0
         this.updateGeneration()
     }
