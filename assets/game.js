@@ -15,6 +15,8 @@ class Game {
         this.startGrid = options['grid'] // optional, defaults to `undefined`
         this.generations = 0
         this.generationsNode = document.getElementById('generations')
+        this.startTime = Date.now()
+        this.elapsedNode = document.getElementById('elapsed')
         this.history = [[], []]
         this.timer = null
         this.setup()
@@ -24,6 +26,7 @@ class Game {
         this.board = new Board(this.selector, this.rows, this.cols, this.density, this.startGrid)
         this.generations += 0
         this.updateGeneration()
+        this.updateElapsed()
     }
     // start the game loop
     start() {
@@ -32,6 +35,7 @@ class Game {
             updater()
             this.generations += 1
             this.updateGeneration()
+            this.updateElapsed()
             if (this.isGameDone()) {
                 this.stop()
             }
@@ -47,6 +51,20 @@ class Game {
     // display the current generation
     updateGeneration() {
         this.generationsNode.innerHTML = this.generations
+    }
+    updateElapsed() {
+        const elapsed = Date.now() - this.startTime
+        let elapsedDisplay = ''
+        if (elapsed < 2000) { // if it's less than 2s, show in ms
+            elapsedDisplay = `${elapsed}ms`
+        }
+        else if (elapsed < 120 * 1000) { // if it's less than 2 minutes, show in seconds
+            elapsedDisplay = `${elapsed / 1000}s`
+        }
+        else {
+            elapsedDisplay = `${elapsed / (1000 * 60)}m`
+        }
+        this.elapsedNode.innerHTML = elapsedDisplay
     }
     // convert an array of objects, each with an `alive` property
     // set to either true or false to a string of 1s and 0s
